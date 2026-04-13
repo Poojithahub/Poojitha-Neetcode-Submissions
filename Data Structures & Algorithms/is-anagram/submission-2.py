@@ -1,0 +1,16 @@
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        # An anagram is a word or phrase formed by rearranging all the letters of another word or phrase.
+        if len(s) != len(t):
+            return False
+
+        count = [0] * 26  #creating an array of 26 columns(as we have 26 alpahabets)
+        for i in range(len(s)): 
+            count[ord(s[i]) - ord('a')] += 1 #ord means ordinal-> ord('a') gives ascii value= 97, so 97-97=0
+            count[ord(t[i]) - ord('a')] -= 1 #ord() converts char to ASCII/Unicode integer
+
+        for val in count:
+            if val != 0: #checking if any value in count[] array is not 0. if any value is not 0, then its not a anagram
+                return False
+        return True # returns true (we consider in anagram), when all values in count are 0
+        
